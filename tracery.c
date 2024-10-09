@@ -238,6 +238,10 @@ private string applyModifier(string text, string modifier) {
       return pluralizeFirstWord(text);
     case "ed":
       return pastTense(text);
+    case "spaceBefore":
+      return addSpaceBefore(text);
+    case "spaceAfter":
+      return addSpaceAfter(text);
     case "replace":
     default:
       // fallback: do nothing
@@ -247,12 +251,28 @@ private string applyModifier(string text, string modifier) {
 
 // Utility: return "a" or "an" based on input word
 private string article(string text) {
-    string *vowels = explode("aeiouAEIOU","");
-    if (member_array(text[0..0], vowels) != -1) {
-      return "an " + text;
-    } else {
-      return "a " + text;
-    }
+  string *vowels = explode("aeiouAEIOU","");
+  if (member_array(text[0..0], vowels) != -1) {
+    return "an " + text;
+  } else {
+    return "a " + text;
+  }
+}
+
+// Utility: If the text has length, add a space at the end.
+private string addSpaceBefore(string text) {
+  if(sizeof(text) > 0) {
+    return " "+text;
+  }
+  return text;
+}
+
+// Utility: If the text has length, add a space at the end.
+private string addSpaceAfter(string text) {
+  if(sizeof(text) > 0) {
+    return text+" ";
+  }
+  return text;
 }
 
 // Utility: Split off the first word and pluralize it
