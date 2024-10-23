@@ -232,6 +232,10 @@ private string applyModifier(string text, string modifier) {
       return capitalize(text);
     case "capitalizeAll":
       return capitalize_all(text);
+    case "upper":
+      return upper_case(text);
+    case "lower":
+      return lower_case(text);
     case "s":
       return pluralize(text);
     case "firstS":
